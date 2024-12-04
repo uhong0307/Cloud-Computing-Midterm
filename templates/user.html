@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>我的借閱書籍</h1>
+{% if borrowed_books %}
+<table>
+    <tr>
+        <th>標題</th>
+        <th>作者</th>
+        <th>出版日期</th>
+        <th>操作</th>
+    </tr>
+    {% for book in borrowed_books %}
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.publish_date }}</td>
+        <td>
+            <form action="{{ url_for('return_book', book_id=book.id) }}" method="POST" style="display: inline;">
+                <button type="submit" class="button">歸還</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>目前沒有借閱書籍。</p>
+{% endif %}
+{% endblock %}

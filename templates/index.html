@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>書籍清單</h1>
+{% if current_user.is_admin %}
+    <a href="{{ url_for('add_book') }}" class="button">新增書籍</a>
+{% endif %}
+<table>
+    <tr>
+        <th>標題</th>
+        <th>作者</th>
+        <th>出版日期</th>
+        <th>狀態</th>
+        <th>操作</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.publish_date }}</td>
+        <td>
+            {% if book.is_borrowed %}
+                {% if current_user.is_admin %}
+                    <!-- 管理員顯示借閱者的名字 -->
+                    已借出 ({{ book.borrower.username }})
+                {% else %}
+                    已借出
+                {% endif %}
+            {% else %}
+                可借閱
+            {% endif %}
+        </td>
+        <td>
+            {% if not book.is_borrowed and not current_user.is_admin %}
+                <!-- 只有非管理員身份才能看到借閱按鈕 -->
+                <a href="{{ url_for('borrow_book', book_id=book.id) }}" class="button">借閱</a>
+            {% elif book.is_borrowed and not current_user.is_admin %}
+                <span>已借閱</span>
+            {% endif %}
+            
+            {% if current_user.is_admin %}
+                <!-- 只有管理員才能看到刪除按鈕 -->
+                <form action="{{ url_for('delete_book', book_id=book.id) }}" method="POST" style="display: inline;">
+                    <button type="submit" class="button" style="background-color: #ff0000;">刪除</button>
+                </form>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

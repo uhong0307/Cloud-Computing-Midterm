@@ -1,0 +1,112 @@
+/* 背景設計 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+
+/* 登入容器 */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* 登入框 */
+.login-box {
+    background-color: #ffffff;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+}
+
+/* 標題 */
+.login-box h2 {
+    margin-bottom: 1em;
+    color: #333;
+    font-size: 24px;
+}
+
+/* 輸入框 */
+.input-group {
+    margin-bottom: 1em;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box; /* 確保 padding 和 width 一起計算 */
+}
+
+/* 按鈕 */
+.login-button {
+    width: 100%;
+    padding: 0.8em;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+/* 註冊連結 */
+.register-link {
+    margin-top: 1em;
+    font-size: 14px;
+    color: #555;
+}
+
+.register-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* auth.css */
+.admin-register {
+    width: 100%;
+    padding: 0.8em;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.admin-register:hover {
+    background-color: #218838;
+}
+

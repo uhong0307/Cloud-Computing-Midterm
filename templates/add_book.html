@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>新增書籍</h2>
+<form method="POST" action="{{ url_for('add_book') }}">
+    <label>標題:</label><br>
+    <input type="text" name="title" required><br><br>
+    <label>作者:</label><br>
+    <input type="text" name="author" required><br><br>
+    <label>出版日期:</label><br>
+    <input type="text" name="publish_date"><br><br>
+    <button type="submit">新增書籍</button>
+</form>
+<a href="{{ url_for('index') }}">返回書籍清單</a>
+{% endblock %}

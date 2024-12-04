@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<body>
+    <h2>使用者管理</h2>
+    <table>
+        <tr>
+            <th>使用者名稱</th>
+            <th>身份</th>
+            <th>操作</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ '管理員' if user.is_admin else '讀者' }}</td>
+            <td>
+                {% if not user.is_admin %}
+                <form action="{{ url_for('delete_user', user_id=user.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="button" style="background-color: #ff0000;" onclick="return confirm('確定要刪除此使用者嗎？')">刪除</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+{% endblock %}

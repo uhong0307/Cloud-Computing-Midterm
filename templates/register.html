@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>註冊</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <script>
+        function validateForm() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm_password").value;
+            
+            if (password !== confirmPassword) {
+                document.getElementById("error-message").textContent = "密碼和確認密碼不一致";
+                return false; // 阻止表單提交
+            }
+            return true; // 允許表單提交
+        }
+    </script>
+</head>
+<body class="auth-page">
+    <div class="login-container">
+        <div class="login-box">
+            <h2>註冊</h2>
+            <form action="{{ url_for('register') }}" method="POST" onsubmit="return validateForm()">
+                <div class="input-group">
+                    <label for="username">使用者名稱:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">密碼:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirm_password">確認密碼:</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                </div>
+                <p id="error-message" style="color: red;"></p>
+                <button type="submit" class="login-button">註冊</button>
+                <!-- 添加 hidden input 用於區分註冊身份 -->
+                <button type="submit" name="admin" value="true" class="admin-register">註冊為管理員</button>
+                <p class="register-link">已經有帳號了嗎？ <a href="{{ url_for('login') }}">登入</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
